@@ -17,7 +17,7 @@ class Blockchain {
     return block;
   }
 
-  getPreviousBlock = () => {
+  getLastBlock = () => {
     return this.chain[this.chain.length - 1];
   }
 
@@ -48,7 +48,7 @@ class Blockchain {
 
   
   isChainValid = (chain) => {
-    // check if previousHash chain is valid
+    // check if previousHash link is valid
     for (var i = 1; i < chain.length; i++) {
       const prevBlock = chain[i - 1];
       const currBlock = chain[i];
@@ -56,7 +56,7 @@ class Blockchain {
         return false;
       }
 
-      // check if Proof of Work chain is valid
+      // check if Proof of Work link is valid
       const hashOperation = this.hash(Math.pow(currBlock.proof, 2) - Math.pow(prevBlock.proof, 2));
       if (hashoperation.slice(0, 4) !== '0000') {
         return false;
